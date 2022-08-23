@@ -1,0 +1,48 @@
+
+var ftGUID_5886780="5283E8407A3834";
+var ftConfID_5886780="0";
+var ftParams_5886780="ft_custom=dHksAXprOSBqaCknW286IX5rCTNoazW9x3I=&ftOBA=1&ft_domain=icooon-mono.com&ft_ifb=1&ft_agentEnv=0&ft_referrer=https%3A%2F%2Ficooon-mono.com%2F&gdpr=0&cachebuster=998112.7303011934";
+var ftKeyword_5886780="";
+var ftCustom_5886780="dHksAXprOSBqaCknW286IX5rCTNoazW9x3I=";
+var ftSection_5886780="";
+var ftSegment_5886780="aixc";
+var ftSegmentList_5886780=[{s:'aixc'}];
+var ftRuleMatch_5886780="0";
+var ftTimestamp_5886780="1659168491";
+var ftGeoC2_5886780="jp";
+var ftGeoState_5886780="14";
+var ftGeoCity_5886780="kanagawa";
+var ftISP_5886780="japan network enabler";
+var ftSpeed_5886780="broadband";
+var ftDMA_5886780="392001";
+var ftLong_5886780="139.63";
+var ftLat_5886780="35.47";
+var ftPostal_5886780="221-0045";
+var ftTimeZone_5886780="900";
+var ftMobileCarrier_5886780="";
+var ftImp5886780 = {};
+ftImp5886780.privacy = "x";
+ftImp5886780.guidAge = "41";
+ftImp5886780.impID = "FF95FA00-E7E0-5517-1528-21AF3D22A848";
+ftImp5886780.duid = "FT:5283E8407A3834";
+
+ftImp5886780.ft_tpplid = "";
+ftImp5886780.ft_c = {};
+ftImp5886780.gdpr = "0";
+ftImp5886780.gdpr_consent = "";
+ftImp5886780.gdpr_pd = "";
+ftImp5886780.oob_consent = "";
+ftImp5886780.gdprStoredConsent = "";
+ftImp5886780.us_privacy = "";
+
+ftImp5886780.jsAppend = "1";
+(function(){
+    var tag = document.getElementById('ft_servedby_5886780') || (function(s){
+    	return s[s.length-1];
+    }(document.getElementsByTagName('script'))),
+           js = document.createElement('script');
+    js.src =
+"https://cdn.flashtalking.com/xre/588/5886780/3868390/js/j-5886780-3868390.js";
+    js.id = "ftscript_m5886780";
+    tag.parentNode.insertBefore(js, tag);
+}());
