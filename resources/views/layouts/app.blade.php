@@ -40,7 +40,7 @@
                    <ul class="navbar-nav ml-auto" >
                        <!-- Authentication Links -->
                     {{-- 管理者 --}}
-                    @if( Request::is('*/admin') )
+                    @if( Request::is('*admin*') )
                        {{-- 未登録 --}}
                         @guest
                            <li class="nav-item">
@@ -65,34 +65,31 @@
                                 </a></li>
                                 </ul>
                             </div>
-                       
-                       @endguest
-                    @elseif(Request::is('*/admin/*') ) 
+                        @else
                             <div class="btn-group">
-                                    <button type="button" style="color:#fefefe;" class="btn btn-danger">{{ Auth::user()->name }}</button>
-                                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="visually-hidden">Toggle Dropdown</span>
-                                    </button>
-                                    
-                                        <ul class="dropdown-menu">
-                                            
-                                                    <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                                        onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
-                                                    {{ __('ログアウト') }}
-                                                        </a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                        @csrf
-                                                    </form>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="{{ url('/home/mycart') }}">
-                                                    商品一覧を見る
-                                                </a></li>
-                                                    <li><hr class="dropdown-divider"></li>
-                                                    <li><a class="dropdown-item" href="{{ route('myStore') }}">
-                                                    企業ページへ
-                                                </a></li>
-                               </div>
+                                <button type="button" style="color:#fefefe;" class="btn btn-danger">{{ Auth::user()->name }}</button>
+                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+                                    <ul class="dropdown-menu">                                        
+                                        <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                                {{ __('ログアウト') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
+                                                </li>
+                                                <li><a class="dropdown-item" href="{{ url('/home/mycart') }}">
+                                                商品一覧を見る
+                                            </a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item" href="{{ route('myStore') }}">
+                                                企業ページへ
+                                            </a></li>
+                            </div>
+                       @endguest
                     @else
                         @guest
                             <li class="nav-item">
@@ -165,8 +162,7 @@
                                                     
                                                 </ul>
                                             @endif
-                                </div>
-                            
+                            </div>
                         @endguest
                     @endif
                     

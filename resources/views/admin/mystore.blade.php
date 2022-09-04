@@ -7,19 +7,23 @@
             <div style="margin-top: 30px;">
         
                 <table class="table table-striped">
-                    <form action="{{route('shop')}}" method="get">
+                    <form action="{{route('itemList')}}" method="get">
                        @csrf
                         
                         <input type="submit" value="商品一覧へ">
 
                     </form>  
                     <tr>
-                        <th>氏名</th>
-                        <td>{{$store->name}}</td>
+                        <th>企業名</th>
+                        <td>{{$mystore->name}}</td>
                     </tr>  
                     <tr>
                         <th>メールアドレス</th>
-                        <td>{{ Auth::user()->email }}</td>
+                        <td>{{$mystore->email}}</td>
+                    </tr>
+                    <tr>
+                        <th>登録日</th>
+                        <td>{{$mystore->created_at}}</td>
                     </tr>  
                 </table>
         

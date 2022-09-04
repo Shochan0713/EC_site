@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsSuperToUsersTable extends Migration
+class AddStoreNoToStocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddIsSuperToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_super')->default(false);
+        Schema::table('stocks', function (Blueprint $table) {
+            $table->integer('store_no');
         });
     }
 
@@ -25,7 +25,7 @@ class AddIsSuperToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('stocks', function (Blueprint $table) {
             //
         });
     }

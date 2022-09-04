@@ -65,6 +65,6 @@ Route::post('/stock_confirm', [App\Http\Controllers\AdminController::class, 'sto
 Route::get('/stock_confirm', [App\Http\Controllers\AdminController::class, 'storeCofirm'])->name('storeCofirm');
 Route::post('/stock_compleate', [App\Http\Controllers\AdminController::class, 'storeCompleate'])->name('storeCompleate');
 //adminページ
-Route::get('/mystore', [App\Http\Controllers\AdminController::class, 'myStore'])->name('myStore');
+Route::get('admin/mystore', [App\Http\Controllers\AdminController::class, 'myStore'])->name('myStore');
 
 Route::get('/admin/item_list', [App\Http\Controllers\AdminController::class, 'itemList'])->name('itemList');
