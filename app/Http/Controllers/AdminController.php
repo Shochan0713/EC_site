@@ -35,7 +35,14 @@ class AdminController extends Controller
         $request->getSession()->put('detail',$request->detail);
         $request->getSession()->put('fee',$request->fee);
         $request->getSession()->put('imgpath',$request->imgpath);
-        return view('stock_registration');
+        $request->getSession()->put('category',$request->category);
+        $request->getSession()->put('brand',$request->brand);
+
+        $category = config('category');
+        $brands = DB::table('brand')
+                ->select('*')
+                ->get();
+        return view('stock_registration',compact('category','brands'));
     }
     public function storeCofirm(Request $request){
 
@@ -47,16 +54,17 @@ class AdminController extends Controller
             'detail'=>$inputs['detail'],
             'fee'=>$inputs['fee'],
             'imgpath'=>$inputs['imgpath'],
+            'category'=>$inputs['category'],
             'store_no'=>$mystore_id,
 
         ]);
 
-        return view('stock_confirm',compact('inputs'));
+        $category = config('category');
+        $category_name = $category[$inputs['category']];
+
+        return view('stock_confirm',compact('inputs','category_name'));
     }
     public function storeCompleate(){
-        
-        
-        
         return view('stock_compleate');
     }
     public function myStore(){

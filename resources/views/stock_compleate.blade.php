@@ -6,9 +6,9 @@
         ご登録ありがとうございました！
     </h3>
     <div>
-    <form action="{{route('adminStore')}}" method="get">
-                        @csrf
-                        <input type="submit" value="商品一覧">
+    <form action="{{route('itemList')}}" method="get">
+        @csrf
+    <input type="submit" value="商品一覧">
     </form>
     </div>
 </div>

@@ -35,6 +35,13 @@
             value="{{ $inputs['imgpath'] }}"
             type="hidden">
         </div>
+        <label>カテゴリー</label>
+        {{ $category_name }}
+        <input
+            name="category"
+            value="{{ $inputs['category'] }}"
+            type="hidden">
+        </div>
         <button type="submit" name="action" value="back">
             入力内容修正
         </button>

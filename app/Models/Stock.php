@@ -12,6 +12,6 @@ class Stock extends Model
       ];
 
     protected $fillable = [
-        'name', 'detail', 'fee','imgpath','store_no'
+        'name', 'detail', 'fee','imgpath','store_no','category'
     ];
 }
