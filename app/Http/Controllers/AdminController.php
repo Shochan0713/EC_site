@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Stock;
 use App\Models\Cart;
+use App\Models\Brand;
 use Illuminate\Support\Facades\Auth;
 //use App\Http\Controllers\Auth;
 use App\Http\Controllers\HomeController;
@@ -40,24 +41,22 @@ class AdminController extends Controller
         $request->getSession()->put('brand',$request->brand);
 
         $category = config('category');
-        $brands = DB::table('brand')
+        $brand_name = DB::table('brand')
                 ->select('*')
                 ->get();
-        return view('stock_registration',compact('category','brands'));
+        return view('stock_registration',compact('category','brand_name'));
     }
     public function storeCofirm(Request $request){
-
+        //session格納
         $inputs = $request->all();
+        //インスタンス化
         $stock =  new Stock();
         //画像の保存
-        // dd($request->file('imgpath'));
         $dir = 'image';
         //画像を登録できない
         $file_name = $request->file('imgpath')->getClientOriginalName();
-        // dd($file_name);
         $request->file('imgpath')->storeAs('public/'.$dir, $file_name);   
 
-        
         //ID取得
         $mystore_id  = Auth::guard('admin')->id(); 
         //DB登録
@@ -68,14 +67,28 @@ class AdminController extends Controller
             'imgpath'=>$inputs['imgpath'],
             'category'=>$inputs['category'],
             'store_no'=>$mystore_id,
-
         ]);
 
+        //ブランドのデータ照合
+        $brand_id = DB::table('brand')
+            ->select('id')
+            ->get();
+        
+        $session_brand_id = $inputs['brand'];
+        $brand =  new Brand();
+        if($session_brand_id  != $brand_id){
+            $brand -> create([
+                'name'=>$inputs['brand'],
+            ]);
+
+        };
+        // カテゴリー一覧
         $category = config('category');
         $category_name = $category[$inputs['category']];
 
         return view('stock_confirm',compact('inputs','category_name'));
     }
+
     public function storeCompleate(){
         return view('stock_compleate');
     }

@@ -28,30 +28,15 @@
             </select>
         </div>
         <div class="brand">
-            <select class="form-control" id="brand" name="brand" onchange="clickBtn3()" required>
-                @foreach($brands as $brand)
-                    <option value="" hidden>カテゴリー▼</option>
+            <input type="text" autocomplete="on" list="brand" name="brand">
+            @csrf
+                <datalist id="brand">
+                    @foreach($brand_name as $brand)
+                    <option value="" hidden>ブランド▼</option>
                     <option value="{{ $brand->id }}"  >{{ $brand->name }} </option>
                 @endforeach
-            </select>
-            <div id="div2"></div>
-            <input type="button" value="div2" onclick="clickBtn3()" />
-            </div>
+                </datalist>
+        </div>
        <button type="submit" class="btn btn-blue">入力内容確認</button>
-       <script>
-        function clickBtn3() {
-          const brand = document.getElementById("brand");
-          // 要素の追加
-          if (!brand.hasChildNodes()) {
-            const input1 = document.createElement("input");
-            input1.setAttribute("type", "text");
-            input1.setAttribute("maxlength", "5");
-            input1.setAttribute("size", "10");
-            input1.setAttribute("value", "ブランド名");
-            div2.appendChild(input1);
-          }
-        }
-      </script>
-      
     </form>
 @endsection
