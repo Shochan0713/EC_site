@@ -13,6 +13,12 @@
                         <input type="submit" value="商品一覧へ">
 
                     </form>  
+                    <form action="{{route('storeRegistration')}}" method="get">
+                        @csrf
+                         
+                         <input type="submit" value="商品登録へ">
+ 
+                     </form>  
                     <tr>
                         <th>企業名</th>
                         <td>{{$mystore->name}}</td>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form class="edit-form" method = "POST" action =  "{{route('storeCofirm')}}">
+    <form class="edit-form" method = "POST" action =  "{{route('storeCofirm')}}" enctype="multipart/form-data" >
     @csrf
        <div class="form-group">
            <p>商品名</p>
@@ -27,28 +27,31 @@
                 @endforeach
             </select>
         </div>
-        <div class="category">
-            <select class="form-control" id="category" name="category" required>
+        <div class="brand">
+            <select class="form-control" id="brand" name="brand" onchange="clickBtn3()" required>
                 @foreach($brands as $brand)
                     <option value="" hidden>カテゴリー▼</option>
-                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                    <option value="{{ $brand->id }}"  >{{ $brand->name }} </option>
                 @endforeach
             </select>
-            <p id="target">
-            </p>
-        </div>
+            <div id="div2"></div>
+            <input type="button" value="div2" onclick="clickBtn3()" />
+            </div>
        <button type="submit" class="btn btn-blue">入力内容確認</button>
        <script>
-                function myfunc() {
-                    var value = document.getElementById("brand").value;
-                    var target = document.getElementById("target");
-                    var text = '';
-                    if(value === '12'){
-                        <p>詳細</p>
-                        <input type="text" size="40" value="名前を入力">
-                    }
-                    target.innerHTML = text;
-                }
-        </script>
+        function clickBtn3() {
+          const brand = document.getElementById("brand");
+          // 要素の追加
+          if (!brand.hasChildNodes()) {
+            const input1 = document.createElement("input");
+            input1.setAttribute("type", "text");
+            input1.setAttribute("maxlength", "5");
+            input1.setAttribute("size", "10");
+            input1.setAttribute("value", "ブランド名");
+            div2.appendChild(input1);
+          }
+        }
+      </script>
+      
     </form>
 @endsection

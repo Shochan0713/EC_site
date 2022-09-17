@@ -18,6 +18,7 @@
                                 {{$stock->name}} <br>
                                 {{$stock->fee}}円<br>
                                 <img src="/image/{{$stock->imgpath}}" alt="" class="incart" >
+                                <img src="{{ asset('image/' . $stock->PICTURE) }}" alt="{{ $stock->PRODUCT }}"> 
                                 <br>
                                 {{$stock->detail}} <br>
 

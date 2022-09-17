@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="{{ route('storeCompleate') }}">
+    <form method="POST" action="{{ route('storeCompleate') }}" enctype="multipart/form-data">
         @csrf
         <div>
         <label>商品名</label>
@@ -33,7 +33,7 @@
         <input
             name="imgpath"
             value="{{ $inputs['imgpath'] }}"
-            type="hidden">
+            type="file">
         </div>
         <label>カテゴリー</label>
         {{ $category_name }}

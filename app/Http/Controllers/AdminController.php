@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Thanks;
 use Illuminate\Support\Facades\DB;
 
+
 class AdminController extends Controller
 {
     public function adminStore(){
@@ -30,7 +31,7 @@ class AdminController extends Controller
 
 
     public function storeRegistration(Request $request){
-
+        
         $request->getSession()->put('name',$request->name);
         $request->getSession()->put('detail',$request->detail);
         $request->getSession()->put('fee',$request->fee);
@@ -48,7 +49,18 @@ class AdminController extends Controller
 
         $inputs = $request->all();
         $stock =  new Stock();
+        //画像の保存
+        // dd($request->file('imgpath'));
+        $dir = 'image';
+        //画像を登録できない
+        $file_name = $request->file('imgpath')->getClientOriginalName();
+        // dd($file_name);
+        $request->file('imgpath')->storeAs('public/'.$dir, $file_name);   
+
+        
+        //ID取得
         $mystore_id  = Auth::guard('admin')->id(); 
+        //DB登録
         $stock -> create([
             'name'=>$inputs['name'],
             'detail'=>$inputs['detail'],
@@ -78,7 +90,7 @@ class AdminController extends Controller
         // $stocks = Stock::Paginate(6); //Eloquantで検索
         $mystore_id  = Auth::guard('admin')->id(); 
         $stocks = DB::table('stocks')
-            ->select('*')
+            ->select('stocks.*')
             ->leftjoin('admins','store_no','=','admins.id')
             ->where('store_no','=',$mystore_id)
             ->orderByDesc('stocks.created_at')
