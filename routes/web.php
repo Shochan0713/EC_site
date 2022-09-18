@@ -54,6 +54,11 @@ Route::post('/checkout', [App\Http\Controllers\ShopController::class,'checkout']
 
 //Mypage
 Route::get('/mypage', [App\Http\Controllers\HomeController::class, 'myPageShow'])->name('myPage');
+//Category
+Route::get('/category', [App\Http\Controllers\ShopController::class, 'categoryList'])->name('categoryList');
+
+
+
 
 //ADMIN
 // Route::get('/admin_store', [App\Http\Controllers\HomeController::class, 'adminStore'])->name('adminStore');
@@ -64,6 +69,9 @@ Route::post('/stock_registration', [App\Http\Controllers\AdminController::class,
 Route::post('/stock_confirm', [App\Http\Controllers\AdminController::class, 'storeCofirm'])->name('storeCofirm');
 Route::get('/stock_confirm', [App\Http\Controllers\AdminController::class, 'storeCofirm'])->name('storeCofirm');
 Route::post('/stock_compleate', [App\Http\Controllers\AdminController::class, 'storeCompleate'])->name('storeCompleate');
+
+
+
 //adminページ
 Route::get('admin/mystore', [App\Http\Controllers\AdminController::class, 'myStore'])->name('myStore');
 

@@ -75,4 +75,11 @@ class ShopController extends Controller
  
     }
     
+    public function categoryList(Request $request)
+    {
+        $category = config('category');   
+        return view('category')->with('category',$category);
+ 
+    }
+
 }
