@@ -15,7 +15,7 @@
                     @endif
 
                     You are logged in as 管理者!
-                    <form action="{{route('itemList')}}" method="get">
+                    <form action="{{route('adminStore')}}" method="get">
                        @csrf
                         
                         <input type="submit" value="登録ずみ一覧へ">

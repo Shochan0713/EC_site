@@ -7,7 +7,7 @@
             <div style="margin-top: 30px;">
         
                 <table class="table table-striped">
-                    <form action="{{route('itemList')}}" method="get">
+                    <form action="{{route('adminStore')}}" method="get">
                        @csrf
                         
                         <input type="submit" value="商品一覧へ">

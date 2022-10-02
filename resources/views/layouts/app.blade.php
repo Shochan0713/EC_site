@@ -40,97 +40,67 @@
                    <ul class="navbar-nav ml-auto" >
                        <!-- Authentication Links -->
                     {{-- 管理者 --}}
-                    @if( Request::is('*admin*') )
-                       {{-- 未登録 --}}
-                        @guest
-                           <li class="nav-item">
-                               <a class="nav-link" style="color:#fefefe;"  href="{{ route('admin-login') }}">{{ __('企業ログイン') }}</a>
-                           </li>
-                           @if (Route::has('register'))
-                               <li class="nav-item">
-                                   <a class="nav-link" style="color:#fefefe;"  href="{{ route('admin-register') }}">{{ __('企業登録') }}</a>
-                               </li>
-                           @endif
-                            <div class="btn-group">
-                                <button type="button" style="color:#fefefe;" class="btn btn-danger">{{ __('一般会員はこちら') }}</button>
-                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="visually-hidden">Toggle Dropdown</span>
-                                </button>
+                    {{-- 最初の画面でadminなら --}}
+                    @auth
+                        <div class="btn-group">
+                            <button type="button" style="color:#fefefe;" class="btn btn-danger">{{ Auth::user()->name }}</button>
+                            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ url('/login') }}">
-                                       ログイン
-                                   </a></li>
-                                   <li><a class="dropdown-item" href="{{ url('/register') }}">
-                                    会員登録
-                                </a></li>
-                                </ul>
-                            </div>
-                        @else
-                            <div class="btn-group">
-                                <button type="button" style="color:#fefefe;" class="btn btn-danger">{{ Auth::user()->name }}</button>
-                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="visually-hidden">Toggle Dropdown</span>
-                                </button>
-                                    <ul class="dropdown-menu">                                        
-                                        <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                    @if( Request::is('/admin') )
+                                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                                {{ __('ログアウト') }}
-                                            </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                </form>
-                                                </li>
-                                                <li><a class="dropdown-item" href="{{ url('/home/mycart') }}">
-                                                商品一覧を見る
-                                            </a></li>
-                                                <li><hr class="dropdown-divider"></li>
-                                                <li><a class="dropdown-item" href="{{ route('myStore') }}">
-                                                企業ページへ
-                                            </a></li>
-                            </div>
-                       @endguest
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('ログアウト') }}
+                                                </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url('/home/mycart') }}">
+                                            商品一覧を見る
+                                        </a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item" href="{{ route('myStore') }}">
+                                            企業ページへ
+                                        </a></li>
+                                    @else
+                                            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('ログアウト') }}
+                                                </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url('/home/mycart') }}">
+                                            カートを見る
+                                        </a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item" href="{{ url('/mypage') }}">
+                                            Mypageへ
+                                        </a></li>
+                                            
+                                        </ul>
+                                    @endif
+                        </div>
                     @else
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" style="color:#fefefe;"  href="{{ route('login') }}">{{ __('ログイン') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" style="color:#fefefe;"  href="{{ route('register') }}">{{ __('会員登録') }}</a>
-                                </li>
-                            @endif
-                            <li class="nav-item">
-                                </li>
+                        @if( Request::is('*admin*') )
+                            @if(Auth::guard('admin')->check())
                                 <div class="btn-group">
-                                    <button type="button" style="color:#fefefe;" class="btn btn-danger">{{ __('企業様はこちら') }}</button>
+                                    <button type="button" style="color:#fefefe;" class="btn btn-danger">{{ Auth::guard('admin')->user()->name}}</button>
                                     <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span class="visually-hidden">Toggle Dropdown</span>
                                     </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ url('/login/admin') }}">
-                                        ログイン
-                                    </a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{{ url('/register/admin') }}">
-                                        企業登録
-                                    </a></li>
-                                    </ul>
-                                </div>
-                        @else
-                            <div class="btn-group">
-                                    <button type="button" style="color:#fefefe;" class="btn btn-danger">{{ Auth::user()->name }}</button>
-                                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="visually-hidden">Toggle Dropdown</span>
-                                    </button>
-                                    
-                                        <ul class="dropdown-menu">
-                                            @if( Request::is('/admin/*') )
-                                                    <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                                        onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
+                                        <ul class="dropdown-menu">                                        
+                                            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                                     {{ __('ログアウト') }}
-                                                        </a>
+                                                </a>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                         @csrf
                                                     </form>
@@ -142,30 +112,58 @@
                                                     <li><a class="dropdown-item" href="{{ route('myStore') }}">
                                                     企業ページへ
                                                 </a></li>
-                                            @else
-                                                    <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                                        onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
-                                                    {{ __('ログアウト') }}
-                                                        </a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                        @csrf
-                                                    </form>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="{{ url('/home/mycart') }}">
-                                                    カートを見る
-                                                </a></li>
-                                                    <li><hr class="dropdown-divider"></li>
-                                                    <li><a class="dropdown-item" href="{{ url('/mypage') }}">
-                                                    Mypageへ
-                                                </a></li>
-                                                    
-                                                </ul>
-                                            @endif
-                            </div>
-                        @endguest
-                    @endif
-                    
+                                </div>
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:#fefefe;"  href="{{ route('admin-login') }}">{{ __('企業ログイン') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:#fefefe;"  href="{{ route('register') }}">{{ __('会員登録') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    </li>
+                                    <div class="btn-group">
+                                        <button type="button" style="color:#fefefe;" class="btn btn-danger">{{ __('企業様はこちら') }}</button>
+                                        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="visually-hidden">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{{ url('/login/admin') }}">
+                                            ログイン
+                                        </a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item" href="{{ url('/register/admin') }}">
+                                            企業登録
+                                        </a></li>
+                                        </ul>
+                                    </div>
+                            @endif
+                        @else
+                             <li class="nav-item">
+                                <a class="nav-link" style="color:#fefefe;"  href="{{ route('login') }}">{{ __('ログイン') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color:#fefefe;"  href="{{ route('register') }}">{{ __('会員登録') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                </li>
+                                    <div class="btn-group">
+                                        <button type="button" style="color:#fefefe;" class="btn btn-danger">{{ __('企業様はこちら') }}</button>
+                                        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="visually-hidden">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{{ url('/login/admin') }}">
+                                            ログイン
+                                        </a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item" href="{{ url('/register/admin') }}">
+                                            企業登録
+                                        </a></li>
+                                        </ul>
+                                    </div>
+                        @endif
+                    @endauth
 
                    </ul>
                </div>
