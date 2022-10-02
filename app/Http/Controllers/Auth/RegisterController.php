@@ -73,7 +73,6 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'is_super' => '1'
             
         ]);
     }
@@ -114,7 +113,6 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'is_super' => '0'
         ]);
     }
 

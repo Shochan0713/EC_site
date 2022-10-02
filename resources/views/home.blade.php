@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                        
                     {{ __('You are logged in!!') }}
                     <form action="{{route('shop')}}" method="get">
                        @csrf

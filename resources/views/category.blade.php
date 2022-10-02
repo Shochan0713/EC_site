@@ -4,6 +4,12 @@
 <link rel="stylesheet" href="{{ asset('/css/category.css')  }}" >
 <div id="top" class="wrapper">
     <ul class="product-list">
+            <form action="{{route('shop')}}" method="get">
+            @csrf
+             
+             <input type="submit" value="商品一覧へ">
+
+            </form> 
             <div>
                 <p>{{ $category[1]}}</p>
                 <br>

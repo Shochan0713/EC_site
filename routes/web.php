@@ -63,16 +63,17 @@ Route::get('/category', [App\Http\Controllers\ShopController::class, 'categoryLi
 //ADMIN
 // Route::get('/admin_store', [App\Http\Controllers\HomeController::class, 'adminStore'])->name('adminStore');
 
-Route::get('/storelist', [App\Http\Controllers\AdminController::class, 'adminStore'])->name('adminStore');
-Route::get('/stock_registration', [App\Http\Controllers\AdminController::class, 'storeRegistration'])->name('storeRegistration');
-Route::post('/stock_registration', [App\Http\Controllers\AdminController::class, 'storeRegistration'])->name('storeRegistration');
-Route::post('/stock_confirm', [App\Http\Controllers\AdminController::class, 'storeCofirm'])->name('storeCofirm');
-Route::get('/stock_confirm', [App\Http\Controllers\AdminController::class, 'storeCofirm'])->name('storeCofirm');
-Route::post('/stock_compleate', [App\Http\Controllers\AdminController::class, 'storeCompleate'])->name('storeCompleate');
+// Route::get('admin/storelist', [App\Http\Controllers\AdminController::class, 'adminStore'])->name('adminStore');
+Route::get('admin/stock_registration', [App\Http\Controllers\AdminController::class, 'storeRegistration'])->name('storeRegistration');
+Route::post('admin/stock_registration', [App\Http\Controllers\AdminController::class, 'storeRegistration'])->name('storeRegistration');
+Route::post('admin/stock_confirm', [App\Http\Controllers\AdminController::class, 'storeCofirm'])->name('storeCofirm');
+Route::get('admin/stock_confirm', [App\Http\Controllers\AdminController::class, 'storeCofirm'])->name('storeCofirm');
+Route::post('admin/stock_compleate', [App\Http\Controllers\AdminController::class, 'storeCompleate'])->name('storeCompleate');
 
 
 
 //adminページ
 Route::get('admin/mystore', [App\Http\Controllers\AdminController::class, 'myStore'])->name('myStore');
 
-Route::get('/admin/item_list', [App\Http\Controllers\AdminController::class, 'itemList'])->name('itemList');
+// Route::get('/admin/item_list', [App\Http\Controllers\AdminController::class, 'itemList'])->name('itemList');
+Route::get('/admin/item_list', [App\Http\Controllers\AdminController::class, 'adminStore'])->name('adminStore');

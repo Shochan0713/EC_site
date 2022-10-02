@@ -9,7 +9,12 @@
 
                 <div class="card-body">
                     <p>ご登録頂いたメールアドレスへ決済情報をお送りしております。お手続き完了次第商品を発送致します。</p>
-                    <a href="/">商品一覧へ</a>
+                    <form action="{{route('shop')}}" method="get">
+                        @csrf
+                         
+                         <input type="submit" value="商品一覧へ">
+ 
+                     </form> 
                 </div>
 
            </div>
